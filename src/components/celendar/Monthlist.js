@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-class MonthList extends Component {
+class Monthlist extends Component {
 
     constructor(props) {
         super(props);
@@ -33,4 +33,4 @@ class MonthList extends Component {
     }
 }
 
-export default MonthList;
+export default Monthlist;
