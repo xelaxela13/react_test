@@ -16,7 +16,7 @@ class App extends Component {
                         {data &&
                         <div className="row">
                             <div className="col-12">
-                                <h3><a href="https://github.com/xelaxela13/react_test">GitHub link</a></h3>
+                                <h3><a href="https://github.com/xelaxela13/react_test" target="_blank">GitHub link</a></h3>
                                 <Monthlist items={data}/>
                             </div>
                         </div>
