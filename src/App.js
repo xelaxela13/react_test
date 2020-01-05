@@ -17,8 +17,8 @@ class App extends Component {
                         <div>
                             <Monthlist items={data}/>
                             <ul>
-                                {data.map(item => (
-                                    <li key={item.id}>
+                                {data.map((item, index) => (
+                                    <li key={index}>
                                         {item.id} {item.firstName} {item.lastName} {item.dob}
                                     </li>
                                 ))}
@@ -28,7 +28,6 @@ class App extends Component {
                     </div>
                 )}
             </Fetch>
-
         );
     }
 }
