@@ -10,19 +10,15 @@ class App extends Component {
         return (
             <Fetch url={url}>
                 {({loading, error, data}) => (
-                    <div>
+                    <div className="container">
                         {loading && <h1>{loading}</h1>}
                         {error && <h1>{error}</h1>}
                         {data &&
-                        <div>
-                            <Monthlist items={data}/>
-                            <ul>
-                                {data.map((item, index) => (
-                                    <li key={index}>
-                                        {item.id} {item.firstName} {item.lastName} {item.dob}
-                                    </li>
-                                ))}
-                            </ul>
+                        <div className="row">
+                            <div className="col-12">
+                                <h3><a href="https://github.com/xelaxela13/react_test">GitHub link</a></h3>
+                                <Monthlist items={data}/>
+                            </div>
                         </div>
                         }
                     </div>

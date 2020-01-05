@@ -14,7 +14,7 @@ let itemsPMonth = {
     '10': [],
     '11': [],
     '12': []
-}
+};
 
 class Monthlist extends Component {
 
@@ -22,7 +22,8 @@ class Monthlist extends Component {
         super(props);
         this.state = {
             months: [],
-            itemsPMonth: {}
+            itemsPerMonth: {},
+            itemsForMonth: []
         };
 
     }
@@ -37,14 +38,15 @@ class Monthlist extends Component {
                 itemsPMonth[this.parseMonth(item.dob)].push(item)
             });
             this.setState({
-                itemsPMonth: itemsPMonth
+                itemsPerMonth: itemsPMonth
             });
         }
     }
 
-    moveEvent = (event, start, end) => {
-
-        console.log(event)
+    onMouseOverEvent = (e) => {
+        this.setState({
+            itemsForMonth: this.state.itemsPerMonth[e.target.dataset['index']]
+        })
     };
 
     getColor = (itemLength) => {
@@ -67,22 +69,29 @@ class Monthlist extends Component {
     };
 
     render() {
-        if (this.props.items) {
-            const {months, itemsPMonth} = this.state;
-            console.log(itemsPMonth)
-            return (
-                <div className="d-flex justify-content-around my-3">
-                    {months.map((element, index) => (
-                            <button key={index} style={{backgroundColor: this.getColor(itemsPMonth[index + 1].length)}}
-                                    className="btn btn-primary">
-                                {element}
-                            </button>
-                        )
-                    )}
+        const {months, itemsPerMonth, itemsForMonth} = this.state;
+        return (
+            <div className="d-flex">
+                <div className="d-flex flex-column justify-content-around my-3">
+                {months.map((element, index) => (
+                        <button key={index} style={{backgroundColor: this.getColor(itemsPerMonth[index + 1].length)}}
+                                className="btn btn-info mb-3"
+                                data-index={index + 1}
+                                onMouseOver={(e) => this.onMouseOverEvent(e)}>
+                            {element} - {itemsPerMonth[index + 1].length}
+                        </button>
+                    )
+                )}
                 </div>
-            );
-        }
-
+                <div className={itemsForMonth ? "d-block" : "d-none"}>
+                    <ul>
+                    {itemsForMonth.map((item, index)=>(
+                       <li key={index}>{item.id} {item.firstName} {item.lastName} {item.dob}</li>
+                    ))}
+                    </ul>
+                </div>
+            </div>
+        );
     }
 }
 
